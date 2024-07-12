@@ -10,10 +10,5 @@ public class App {
         for (int i = 0; i < str.length; i++) {
             System.out.println(str[i]);
         }
-        s.startsWith("h");
-        ArrayList<Integer> list = new ArrayList<>();
-        list.add(1);
-        list.remove(0);
-        list.remove(1);
     }
 }
