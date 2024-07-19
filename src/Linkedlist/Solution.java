@@ -1,8 +1,38 @@
 package Linkedlist;
 
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.PriorityQueue;
 
 public class Solution {
+
+
+    public ListNode mergeKLists(ListNode[] lists) {
+        // 合并k个升序链表
+        PriorityQueue<ListNode> minHeap = new PriorityQueue<>(new Comparator<ListNode>() {
+
+            @Override
+            public int compare(ListNode o1, ListNode o2) {
+                return o1.val - o2.val;
+            }
+        });
+        for (ListNode node : lists) {
+            if (node != null) {
+                minHeap.add(node);
+            }
+        }
+        ListNode dummy = new ListNode(0);
+        ListNode prev = dummy;
+        while (!minHeap.isEmpty()) {
+            ListNode node = minHeap.poll();
+            prev.next = new ListNode(node.val);
+            prev = prev.next;
+            if (node.next != null) {
+                minHeap.add(node.next);
+            }
+        }
+        return dummy.next;
+    }
 
     public ListNode reverseKGroup(ListNode head, int k) {
         // k个一组翻转链表
